@@ -42,7 +42,6 @@ int _printf(const char *format, ...)
 		int i;
 		va_list ar_list;
 		int (*printer)(va_list);
-		char *fm = "\n";
 
 		va_start(ar_list, format);
 
@@ -61,8 +60,7 @@ int _printf(const char *format, ...)
 				else if (format[i + 1] != '\0')
 				{
 					printer = func_checker(format[i + 1]);
-					fm = format[i + 1];
-					cn += (printer ? printer(ar_list) : _putchar(format[i]) + _putchar(fm));
+					cn += (printer ? printer(ar_list) : _putchar(format[i]) + _putchar(format[i + 1]));
 					i++;
 				}
 			}
