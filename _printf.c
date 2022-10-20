@@ -8,8 +8,8 @@
 int (*func_checker(char c))(va_list)
 {
 	op_t funcs[] = {
-		/*{"c", print_c},*/
-		/*{"s", print_s},*/
+		{"c", print_c},
+		{"s", print_s}
 		{"i", print_id},
 		{"d", print_id},
 		{NULL, NULL}
@@ -60,7 +60,6 @@ int _printf(const char *format, ...)
 				else if (format[i + 1] != '\0')
 				{
 					printer = func_checker(format[i + 1]);
-					
 					cn += (printer ? printer(ar_list) : _putchar(format[i]) + _putchar(format[i + 1]));
 					i++;
 				}
