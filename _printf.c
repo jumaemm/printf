@@ -9,7 +9,7 @@ int (*func_checker(char c))(va_list)
 {
 	op_t funcs[] = {
 		{"c", print_c},
-		{"s", print_s}
+		{"s", print_s},
 		{"i", print_id},
 		{"d", print_id},
 		{NULL, NULL}
