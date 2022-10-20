@@ -5,7 +5,7 @@
  * c: char to check
  * Return: pointer to print function
  */
-int (*func_checker(char c)(va_list))
+int (*func_checker(char c))(va_list)
 {
 	op_t funcs[] = {
 		{"c", print_c},
