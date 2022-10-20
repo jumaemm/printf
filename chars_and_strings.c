@@ -8,7 +8,7 @@
 int print_s(va_list ar_list)
 {
 
-	char str;
+	char *str;
 	int itr;
 
 	str =  va_arg(ar_list,char *);
