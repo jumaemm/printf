@@ -2,25 +2,28 @@
 
 /**
  * func_checker - get right function for printing args
- * c: char to check
+ * @c: char to check
  * Return: pointer to print function
  */
 int (*func_checker(char c))(va_list)
 {
 	op_t funcs[] = {
-		{"c", print_c},
-		{"s", print_s},
+		/*{"c", print_c},*/
+		/*{"s", print_s},*/
 		{"i", print_id},
 		{"d", print_id},
 		{NULL, NULL}
 	};
-
 	int i;
 
+	/*printf("I am in the func checker\n");*/
 	for (i = 0; funcs[i].key != NULL; i++)
 	{
-		if (funcs[i].key == c)
+		if (*funcs[i].key == c)
+		{
+			/*printf("I should return a value\n");*/
 			return (funcs[i].value);
+		}
 	}
 	return (0);
 }
@@ -37,8 +40,8 @@ int _printf(const char *format, ...)
 	if (format != NULL)
 	{
 		int i;
-		va_list ap;
-		int (*search)(ar_list);
+		va_list ar_list;
+		int (*printer)(va_list);
 
 		va_start(ar_list, format);
 
@@ -52,18 +55,14 @@ int _printf(const char *format, ...)
 				if (format[i + 1] == '%')
 				{
 					count += _putchar(format[i]);
+					i++;
 				}
 				else if (format[i + 1] != '\0')
 				{
 					printer = func_checker(format[i + 1]);
-					if (printer != NULL)
-					{
-						count += printer(ar_list);
-					}
-					else
-						count += (_putchar(format[i]) + _putchar(format[i + 1]));
+					count += (printer ? printer(ar_list) : _putchar(format[i]) + _putchar(format[i + 1]));
+					i++;
 				}
-
 			}
 			else
 				count += _putchar(format[i]);
