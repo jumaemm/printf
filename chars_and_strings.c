@@ -11,8 +11,7 @@ int print_s(va_list ar_list)
 	char *str;
 	int itr;
 
-	str =  va_arg(ar_list,char *);
-	
+	str =  va_arg(ar_list, char *);
 	if (str == NULL)
 		str = "(null)";
 	for (itr = 0; str[itr] != '\0'; itr++)
