@@ -8,10 +8,11 @@
 int print_id(va_list ar_list)
 {
 	int count, tens_exp, nums, digits;
-
+	/*printf("I am in the decimal checker\n");*/
 	/*We'll get the input and seperate the digits so that we print one by one*/
 	nums = va_arg(ar_list, int);
-
+	count = 0;
+	/*printf("Nums is: %d", nums);*/
 	/*for negative numbers, include a '-' symbol first*/
 	if (nums < 0)
 	{
@@ -28,9 +29,10 @@ int print_id(va_list ar_list)
 		tens_exp *= 10;
 	}
 
-	while (tens_exp > 1)
+	while (tens_exp >= 1)
 	{
 		count += _putchar(((nums / tens_exp) % 10) + 48);
+		/*printf("count is %d", count);*/
 		tens_exp /= 10;
 	}
 	return (count);
