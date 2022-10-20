@@ -35,7 +35,7 @@ int (*func_checker(char c))(va_list)
 int _printf(const char *format, ...)
 {
 	/*if format is NULL count is -1*/
-	int count = -1;
+	int cn = -1;
 
 	if (format != NULL)
 	{
@@ -45,7 +45,7 @@ int _printf(const char *format, ...)
 
 		va_start(ar_list, format);
 
-		count = 0;
+		cn = 0;
 		for (i = 0; format[i] != '\0'; i++)
 		{
 			/*check for % flag*/
@@ -54,20 +54,21 @@ int _printf(const char *format, ...)
 				/*check if next char is also %*/
 				if (format[i + 1] == '%')
 				{
-					count += _putchar(format[i]);
+					cn += _putchar(format[i]);
 					i++;
 				}
 				else if (format[i + 1] != '\0')
 				{
 					printer = func_checker(format[i + 1]);
-					count += (printer ? printer(ar_list) : _putchar(format[i]) + _putchar(format[i + 1]));
+					
+					cn += (printer ? printer(ar_list) : _putchar(format[i]) + _putchar(format[i + 1]));
 					i++;
 				}
 			}
 			else
-				count += _putchar(format[i]);
+				cn += _putchar(format[i]);
 		}
 		va_end(ar_list);
 	}
-	return (count);
+	return (cn);
 }
